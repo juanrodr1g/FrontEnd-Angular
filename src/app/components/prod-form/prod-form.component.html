@@ -1,0 +1,57 @@
+
+    <div class="col-md-4 offset-md-2">
+        <div class="card">
+            <div class="card-body">
+                <form>
+                    <div class="form-group">
+                        <input type="text" name="nombre" [(ngModel)]="producto.nombre" placeholder="Nombre" class="form-control" autofocus>
+                    </div>
+
+                    <!-- Fill de Proveedores -->
+                    <div class="form-group ">
+                     
+                            <select (click)="prueba()" id="inputProveedores" class="form-control"> 
+                          <option  selected *ngFor="let proveedor of proveedores">{{proveedor.nombre}}</option>
+                          
+                        </select>
+                      </div>
+
+                    <div class="form-group">
+                        <textarea style="display: none;" id="inputProveedores2" name="proveedor"  [(ngModel)]="producto.proveedor" placeholder="Proveedor" class="form-control"></textarea>
+                    </div>
+                
+
+                    <div class="form-group">
+                        <textarea name="stock" [(ngModel)]="producto.stock" placeholder="Stock" class="form-control"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <textarea name="descripcion" [(ngModel)]="producto.descripcion" placeholder="Descripcion" rows="2" class="form-control"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <textarea name="precio" [(ngModel)]="producto.precio" placeholder="Precio" rows="2" class="form-control"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <input type="url" name="image" [(ngModel)]="producto.image" placeholder="Image" class="form-control">
+                    </div>
+                    <!-- Si edit está en true, actualizamos, si está en false se crea uno nuevo -->
+                    <button class="btn btn-raised btn-success btn-block" (click)="edit ? updateProducto() : saveNewProducto()">
+                        Save
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+ <div class="col-md-4">
+    <div class="card card-body text-center">
+
+<img [src]="producto.image == '' ?  '/assets/noimage.png' : producto.image" class="card-img-top">
+        <h3>{{producto.id}}. {{producto.nombre == '' ? 'Nombre del producto' : producto.nombre}}</h3>
+        <p>{{producto.precio == '' ? 'Precio del producto' : producto.precio}} </p>
+        <p>{{producto.proveedor == '' ? 'Proveedor del producto' : producto.proveedor}} </p>
+        <p>{{producto.stock == '' ? 'Stock del producto' : producto.stock}}  </p>
+        <p>{{producto.descripcion == '' ? 'Descripcion del producto' : producto.descripcion}}</p>
+        <p>{{producto.created_at | date: 'yyyy-MM-dd'}}</p>
+    </div>
+</div>
